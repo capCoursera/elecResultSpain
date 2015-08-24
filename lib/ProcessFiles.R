@@ -36,29 +36,29 @@ readElecFile <- function(file,...)
   return(data)
 }
 
+#Fichero de CONTROL de los ficheros que componen el proceso electoral.
 read01file <- function(filename)
 {
-#Fichero de CONTROL de los ficheros que componen el proceso electoral.
-# "ElType"  Tipo de elección.
-# "ElYear"  Año del proceso electoral.
-# "ElMonth" Mes del proceso electoral.
-# "Round"  Número de vuelta. (en procesos a una sola vuelta o Referéndum = 1).
-# "Incl01"  Siempre 1 (se adjunta fichero 01xxaamm.dat).
-# "Incl02"  1/0 (se adjunta/no se adjunta el fichero 02xxaamm.dat).
-# "Incl03"  1/0 (se adjunta/no se adjunta el fichero 03xxaamm.dat).
-# "Incl04"  1/0 (se adjunta/no se adjunta el fichero 04xxaamm.dat).
-# "Incl05"  1/0 (se adjunta/no se adjunta el fichero 05xxaamm.dat).
-# "Incl06"  1/0 (se adjunta/no se adjunta el fichero 06xxaamm.dat).
-# "Incl07"  1/0 (se adjunta/no se adjunta el fichero 07xxaamm.dat).
-# "Incl08"  1/0 (se adjunta/no se adjunta el fichero 08xxaamm.dat).
-# "Incl09"  1/0 (se adjunta/no se adjunta el fichero 09xxaamm.dat).
-# "Incl10"  1/0 (se adjunta/no se adjunta el fichero 10xxaamm.dat).
-# "Incl1104"  1/0 (se adjunta/no se adjunta el fichero 1104aamm.dat).
-# "Incl1204"  1/0 (se adjunta/no se adjunta el fichero 1204aamm.dat).
-# "Incl0510"  1/0 (se adjunta/no se adjunta el fichero 0510aamm.dat).
-# "Incl0610"  1/0 (se adjunta/no se adjunta el fichero 0610aamm.dat).
-# "Incl0710"  1/0 (se adjunta/no se adjunta el fichero 0710aamm.dat).
-# "Incl0810"  1/0 (se adjunta/no se adjunta el fichero 0810aamm.dat).
+  # "ElType"  Tipo de elección.
+  # "ElYear"  Año del proceso electoral.
+  # "ElMonth" Mes del proceso electoral.
+  # "Round"  Número de vuelta. (en procesos a una sola vuelta o Referéndum = 1).
+  # "Incl01"  Siempre 1 (se adjunta fichero 01xxaamm.dat).
+  # "Incl02"  1/0 (se adjunta/no se adjunta el fichero 02xxaamm.dat).
+  # "Incl03"  1/0 (se adjunta/no se adjunta el fichero 03xxaamm.dat).
+  # "Incl04"  1/0 (se adjunta/no se adjunta el fichero 04xxaamm.dat).
+  # "Incl05"  1/0 (se adjunta/no se adjunta el fichero 05xxaamm.dat).
+  # "Incl06"  1/0 (se adjunta/no se adjunta el fichero 06xxaamm.dat).
+  # "Incl07"  1/0 (se adjunta/no se adjunta el fichero 07xxaamm.dat).
+  # "Incl08"  1/0 (se adjunta/no se adjunta el fichero 08xxaamm.dat).
+  # "Incl09"  1/0 (se adjunta/no se adjunta el fichero 09xxaamm.dat).
+  # "Incl10"  1/0 (se adjunta/no se adjunta el fichero 10xxaamm.dat).
+  # "Incl1104"  1/0 (se adjunta/no se adjunta el fichero 1104aamm.dat).
+  # "Incl1204"  1/0 (se adjunta/no se adjunta el fichero 1204aamm.dat).
+  # "Incl0510"  1/0 (se adjunta/no se adjunta el fichero 0510aamm.dat).
+  # "Incl0610"  1/0 (se adjunta/no se adjunta el fichero 0610aamm.dat).
+  # "Incl0710"  1/0 (se adjunta/no se adjunta el fichero 0710aamm.dat).
+  # "Incl0810"  1/0 (se adjunta/no se adjunta el fichero 0810aamm.dat).
 
   widthInfo <- c (2,4,2,1,rep_len(1,16))
   colNames <- c("ElType","ElYear","ElMonth","Round",
@@ -72,9 +72,10 @@ read01file <- function(filename)
   return(data)
 }
 
+#Fichero de IDENTIFICACION del proceso electoral.
 read02file <- function(filename)
 {
-#Fichero de IDENTIFICACION del proceso electoral.
+
 #   "ElType"  Tipo de elección.
 #   "ElYear" Año del proceso electoral.
 #   "ElMonth" Mes del proceso electoral.
@@ -128,10 +129,9 @@ read03file <- function(filename)
 }
 
 #4.- Fichero de RELACION DE CANDIDATOS.
-
 read04file <- function(filename)
 {
-  #"ElType"   Tipo de elección.
+  #"ElType" Tipo de elección.
   #"ElYear"   Año del proceso electoral.
   #"ElMonth"   Mes del proceso electoral.
   #"Round" Número de vuelta (en procesos a una sola vuelta = 1).
@@ -171,14 +171,14 @@ read04file <- function(filename)
   return(data)
 }
 
+#Fichero de DATOS COMUNES DE MUNICIPIOS.
 read05file <- function(filename)
 {
-  #Fichero de DATOS COMUNES DE MUNICIPIOS.
+
   #"ElType"   Tipo de elección.
   #"ElYear"   Año del proceso electoral.
   #"ElMonth"   Mes del proceso electoral.
   #"Round" Número de vuelta (en procesos a una sola vuelta = 1).
-
   #"CodAut"   Código de la Comunidad Autónoma.
   #"CodProv" Código I.N.E. de la provincia.
   #"CodMun" Código I.N.E. del municipio.
@@ -221,9 +221,10 @@ read05file <- function(filename)
   return(data)
 }
 
+# Fichero de DATOS DE CANDIDATURAS DE MUNICIPIOS
 read06file <- function(filename)
 {
-  # Fichero de DATOS DE CANDIDATURAS DE MUNICIPIOS
+
   #"ElType"   Tipo de elección.
   #"ElYear"   Año del proceso electoral.
   #"ElMonth"   Mes del proceso electoral.
@@ -250,10 +251,10 @@ read06file <- function(filename)
   return(data)
 }
 
-
+#Fichero de DATOS COMUNES DE AMBITO SUPERIOR AL MUNICIPIO.
 read07file <- function(filename)
 {
-  #Fichero de DATOS COMUNES DE AMBITO SUPERIOR AL MUNICIPIO.
+
   #"ElType"   Tipo de elección.
   #"ElYear"   Año del proceso electoral.
   #"ElMonth"   Mes del proceso electoral.
@@ -291,8 +292,9 @@ read07file <- function(filename)
   return(data)
 }
 
+#Fichero de DATOS DE CANDIDATURAS DE AMBITO SUPERIOR AL MUNICIPIO.
 read08file <- function(filename)
-{ #Fichero de DATOS DE CANDIDATURAS DE AMBITO SUPERIOR AL MUNICIPIO.
+{
   #"ElType"   Tipo de elección.
   #"ElYear"   Año del proceso electoral.
   #"ElMonth"   Mes del proceso electoral.
@@ -314,56 +316,144 @@ read08file <- function(filename)
   return(data)
 }
 
+#Fichero de DATOS COMUNES DE MESAS y del C.E.R.A.
 read09file <- function(filename)
 {
+  #"ElType"   Tipo de elección.
+  #"ElYear"   Año del proceso electoral.
+  #"ElMonth"   Mes del proceso electoral.
+  #"Round" Número de vuelta (en procesos a una sola vuelta = 1) o Número de pregunta en Referéndum.
 
+  #"CodAut" Código de la Comunidad Autónoma o 99 si se trata del Total Nacional del C.E.R.A.
+  #"CodProv" Código I.N.E. de la provincia o 99 si se trata del Total Nacional o Autonómico del C.E.R.A.
+  #"CodMun" Código I.N.E. del municipio (999 = C.E.R.A.).
+  #"MunDistrict" Número de distrito municipal en su caso o 01 si el municipio no tiene distritos (distrito único). En el caso de datos procedentes del C.E.R.A., llevará el número del ‘Distrito Electoral’ a que correspondan o 09 si el ámbito de dicho distrito coincide con el de la provincia.
+  #"CodSeccion" Código de la sección (tres dígitos seguidos de un espacio, letra mayúscula u otro dígito).
+  #"CodMesa" Código de la mesa (una letra mayúscula identificando la mesa o una ‘U’ en caso de mesa única).
+  #"CensINE"  Censo del I.N.E.
+  #"CensEscr" Censo de escrutinio o censo C.E.R.A.
+  #"CensCERE" Censo C.E.R.E. en escrutinio (Residentes Extranjeros).
+  #"VotsCERE" Total votantes C.E.R.E. (Residentes Extranjeros).
+  #"Vots1Av" Votantes del primer avance de participación.
+  #"Vots2Av" Votantes del segundo avance de participación.
+  #"VotsBlanco" Votos en blanco.
+  #"VotsNulo" Votos nulos.
+  #"VotCands" Votos a candidaturas.
+  #"VotsSI" Votos afirmativos en Referéndum o ceros en otros procesos electorales.
+  #"VotsNO" Votos negativos en Referéndum o ceros en otros procesos electorales.
+  #"DatOfic" Datos oficiales (Si/No).
 
-  widthInfo <- c (
-
-  )
-  colNames <- c()
+  widthInfo <- c (2,4,2,1,2,2,3,2,4,1,7,7,7,7,7,7,7,7,7,7,7,1)
+  colNames <- c("ElType","ElYear","ElMonth","Round",
+                "CodAut","CodProv","CodMun","MunDistrict","CodSeccion","CodMesa",
+                "CensINE","CensEscr","CensCERE","VotsCERE","Vots1Av","Vots2Av",
+                "VotsBlanco","VotsNulo","VotCands","VotsSI","VotsNO","DatOfic"
+                )
 
   data <- readElecFile(file = filename,widths = widthInfo,col.names =colNames)
 
   return(data)
 }
 
+#Fichero de DATOS DE CANDIDATURAS DE MESAS y del C.E.R.A.
 read10file <- function(filename)
 {
+  #"ElType"   Tipo de elección.
+  #"ElYear"   Año del proceso electoral.
+  #"ElMonth"   Mes del proceso electoral.
+  #"Round" Número de vuelta (en procesos a una sola vuelta = 1) o Número de pregunta en Referéndum.
+  #"CodAut" Código de la Comunidad Autónoma o 99 si se trata del Total Nacional del C.E.R.A.
+  #"CodProv" Código I.N.E. de la provincia o 99 si se trata del Total Nacional o Autonómico del C.E.R.A.
+  #"CodMun" Código I.N.E. del municipio (999 = C.E.R.A.).
+  #"MunDistrict" Número de distrito municipal en su caso o 01 si el municipio no tiene distritos (distrito único). En el caso de datos procedentes del C.E.R.A., llevará el número del ‘Distrito Electoral’ a que correspondan o 09 si el ámbito de dicho distrito coincide con el de la provincia.
+  #"CodSeccion" Código de la sección (tres dígitos seguidos de un espacio, letra mayúscula u otro dígito).
+  #"CodMesa" Código de la mesa (una letra mayúscula identificando la mesa o una ‘U’ en caso de mesa única).
+  #"CodCand" Código de la candidatura o del Senador en elecciones al Senado.
+  #"VotCand" Votos obtenidos por la candidatura o el Senador.
 
-
-  widthInfo <- c (
-
-  )
-  colNames <- c()
+  widthInfo <- c (2,4,2,1,2,2,3,2,4,1,6,7)
+  colNames <- c("ElType","ElYear","ElMonth","Round",
+                "CodAut","CodProv","CodMun","MunDistrict",
+                "CodSeccion","CodMesa","CodCand","VotCand")
 
   data <- readElecFile(file = filename,widths = widthInfo,col.names =colNames)
 
   return(data)
 }
 
+#Fichero de DATOS COMUNES DE MUNICIPIOS menores de 250 habitantes. (Solo en Elecciones Municipales)
 read1104file <- function(filename)
 {
+  #"TipoMun" Tipo de municipio: 08 = entre 100 y 250 habitantes 09 = menores de 100 habitantes.
+  #"ElYear"   Año del proceso electoral.
+  #"ElMonth"   Mes del proceso electoral.
+  #"Round" Número de vuelta (en procesos a una sola vuelta = 1).
+  #"CodAut"   Código de la Comunidad Autónoma.
+  #"CodProv" Código I.N.E. de la provincia.
+  #"CodMun" Código I.N.E. del municipio.
+  #"MunName" Nombre del municipio o del distrito municipal.
+  # Código del Partido Judicial.
+  #"CodPJ" Código del Partido Judicial.
+  #"CodDP" Código de la Diputación Provincial.
+  #"CodCom" Código de la comarca.
+  #"PobDerecho"   Población de derecho.
+  #"NumMesas" Número de mesas.
+  #"CensINE"  Censo del I.N.E.
+  #"CensEscr" Censo de escrutinio.
+  #"CensCERE" Censo C.E.R.E. en escrutinio (Residentes Extranjeros).
+  #"VotsCERE" Total votantes C.E.R.E. (Residentes Extranjeros).
+  #"Vots1Av" Votantes del primer avance de participación.
+  #"Vots2Av" Votantes del segundo avance de participación.
+  #"VotsBlanco" Votos en blanco.
+  #"VotsNulo" Votos nulos.
+  #"VotCands" Votos a candidaturas.
+  #"NumEscs" Número de ‘Escaños’ a distribuir.
+  #"DatOfic" Datos oficiales (Si/No).
 
-
-  widthInfo <- c (
-
-  )
-  colNames <- c()
+  widthInfo <- c (2,4,2,1,2,2,3,100,3,3,3,3,2,3,3,3,3,3,3,3,3,3,2,1)
+  colNames <- c("TipoMun","ElYear","ElMonth","Round",
+                "CodAut","CodProv","CodMun","MunName","CodPJ","CodDP","CodCom",
+                "PobDerecho","NumMesas","CensINE","CensEscr","CensCERE",
+                "VotsCERE","Vots1Av","Vots2Av","VotsBlanco","VotsNulo",
+                "VotCands","NumEscs","DatOfic")
 
   data <- readElecFile(file = filename,widths = widthInfo,col.names =colNames)
 
   return(data)
 }
 
+# Fichero de DATOS DE CANDIDATURAS DE MUNICIPIOS menores de 250 hab. (Solo en Elecciones Municipales)
 read1204file <- function(filename)
 {
+  #"TipoMun" Tipo de municipio: 08 = entre 100 y 250 habitantes 09 = menores de 100 habitantes.
+  #"ElYear"   Año del proceso electoral.
+  #"ElMonth"   Mes del proceso electoral.
+  #"Round" Número de vuelta (en procesos a una sola vuelta = 1).
+  #"CodProv" Código I.N.E. de la provincia.
+  #"CodMun" Código I.N.E. del municipio.
+  #"CandCode"   Código de la candidatura.  #"VotCand" Votos obtenidos por la candidatura.
+  #"VotsCand" Votos obtenidos por la candidatura.
+  #"CandElect" Número de candidatos obtenidos por la candidatura.
+  #"CandFirstName" Nombre del candidato.
+  #"Cand1LastName" Primer apellido del candidato.
+  #"Cand2LastName" Segundo apellido del candidato.
+  #"CandSex" Sexo del candidato (Masculino/Femenino).
+  #"CandBirthDay" Fecha de nacimiento del candidato (DIA).
+  #"CandBirthMonth" Fecha de nacimiento del candidato (MES).
+  #"CandBirthYear" Fecha de nacimiento del candidato (AÑO).
+  #"CandDNI" D.N.I. del candidato.
+  #"VotsCandidato" Votos obtenidos por el candidato.
+  #"CandElected" Candidato elegido (Si/No).
 
 
-  widthInfo <- c (
 
-  )
-  colNames <- c()
+
+  widthInfo <- c (2,4,2,1,2,3,6,3,2,25,25,25,1,2,2,4,10,3,1)
+  colNames <- c("TipoMun","ElYear","ElMonth","Round","CodProv","CodMun",
+                "CandCode","VotsCand","CandElect",
+                "CandFirstName","Cand1LastName","Cand2LastName",
+                "CandSex","CandBirthDay","CandBirthMonth","CandBirthYear",
+                "CandDNI","VotsCandidato","CandElected")
 
   data <- readElecFile(file = filename,widths = widthInfo,col.names =colNames)
 
