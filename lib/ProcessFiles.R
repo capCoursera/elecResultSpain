@@ -36,7 +36,7 @@ readElecFile <- function(file,...)
   return(data)
 }
 
-#Fichero de CONTROL de los ficheros que componen el proceso electoral.
+#1.- Fichero de CONTROL de los ficheros que componen el proceso electoral.
 read01file <- function(filename)
 {
   # "ElType"  Tipo de elección.
@@ -72,7 +72,7 @@ read01file <- function(filename)
   return(data)
 }
 
-#Fichero de IDENTIFICACION del proceso electoral.
+#2.- Fichero de IDENTIFICACION del proceso electoral.
 read02file <- function(filename)
 {
 
@@ -109,19 +109,19 @@ read03file <- function(filename)
 #"ElType"   Tipo de elección.
 #"ElYear"   Año del proceso electoral.
 #"ElMonth"   Mes del proceso electoral.
-#"candCode"   Código de la candidatura.
+#"CandCode"   Código de la candidatura.
 #"candAcronym"   Siglas de la candidatura.
 #"candName"   Denominación de la candidatura.
-#"candCodeProv"   Código de la candidatura cabecera de acumulación a nivel provincial.
-#"candCodeAut"   Código de la candidatura cabecera de acumulación a nivel autonómico.
-#"candCodeNat"   Código de la candidatura cabecera de acumulación a nivel nacional.
+#"CandCodeProv"   Código de la candidatura cabecera de acumulación a nivel provincial.
+#"CandCodeAut"   Código de la candidatura cabecera de acumulación a nivel autonómico.
+#"CandCodeNat"   Código de la candidatura cabecera de acumulación a nivel nacional.
 
   widthInfo <- c (2,4,2,6,
                   50,150,
                   6,6,6)
   colNames <- c("ElType","ElYear","ElMonth",
-                "candCode","candAcronym","candName",
-                "candCodeProv","candCodeAut","candCodeNat"
+                "CandCode","candAcronym","candName",
+                "CandCodeProv","CandCodeAut","CandCodeNat"
                 )
   data <- readElecFile(file = filename,widths = widthInfo,col.names =colNames)
 
@@ -149,7 +149,7 @@ read04file <- function(filename)
   #"CandBirthMonth" Fecha de nacimiento del candidato (MES).
   #"CandBirthYear" Fecha de nacimiento del candidato (AÑO).
   #"CandDNI" D.N.I. del candidato.
-  #"CandElected" Candidato elegido (Si/No).
+  #"CandPElected" Candidato elegido (Si/No).
 
 
   widthInfo <- c (2,4,2,1,
@@ -164,14 +164,14 @@ read04file <- function(filename)
                 "CodListCand","CandListOrder","CandType",
                 "CandFirstName","Cand1LastName","Cand2LastName",
                 "CandSex","CandBirthDay","CandBirthMonth","CandBirthYear",
-                "CandDNI","CandElected"
+                "CandDNI","CandPElected"
                 )
   data <- readElecFile(file = filename,widths = widthInfo,col.names =colNames)
 
   return(data)
 }
 
-#Fichero de DATOS COMUNES DE MUNICIPIOS.
+#5.- Fichero de DATOS COMUNES DE MUNICIPIOS.
 read05file <- function(filename)
 {
 
@@ -221,7 +221,7 @@ read05file <- function(filename)
   return(data)
 }
 
-# Fichero de DATOS DE CANDIDATURAS DE MUNICIPIOS
+#6.- Fichero de DATOS DE CANDIDATURAS DE MUNICIPIOS
 read06file <- function(filename)
 {
 
@@ -232,9 +232,9 @@ read06file <- function(filename)
   #"CodProv" Código I.N.E. de la provincia.
   #"CodMun" Código I.N.E. del municipio.
   #"MunDistrict" Número de distrito municipal en su caso o 99 si es el total municipal.
-  #"CodCand" Código de la candidatura o del Senador.
-  #"VotCand" Votos obtenidos por la candidatura.
-  #"ObtCand" Número de candidatos obtenidos por la candidatura.
+  #"CandCode" Código de la candidatura o del Senador.
+  #"CandVotos" Votos obtenidos por la candidatura.
+  #"CandObt" Número de candidatos obtenidos por la candidatura.
 
 
   widthInfo <- c (2,4,2,1,
@@ -242,8 +242,8 @@ read06file <- function(filename)
                   8,3)
 
   colNames <- c("ElType","ElYear","ElMonth","Round",
-                "CodProv","CodMun","MunDistrict","CodCand",
-                "VotCand","ObtCand"
+                "CodProv","CodMun","MunDistrict","CandCode",
+                "CandVotos","CandObt"
                 )
 
   data <- readElecFile(file = filename,widths = widthInfo,col.names =colNames)
@@ -251,7 +251,7 @@ read06file <- function(filename)
   return(data)
 }
 
-#Fichero de DATOS COMUNES DE AMBITO SUPERIOR AL MUNICIPIO.
+#7.- Fichero de DATOS COMUNES DE AMBITO SUPERIOR AL MUNICIPIO.
 read07file <- function(filename)
 {
 
@@ -292,7 +292,7 @@ read07file <- function(filename)
   return(data)
 }
 
-#Fichero de DATOS DE CANDIDATURAS DE AMBITO SUPERIOR AL MUNICIPIO.
+#8.- Fichero de DATOS DE CANDIDATURAS DE AMBITO SUPERIOR AL MUNICIPIO.
 read08file <- function(filename)
 {
   #"ElType"   Tipo de elección.
@@ -302,21 +302,21 @@ read08file <- function(filename)
   #"CodAut" Código de la Comunidad Autónoma. En el caso de Total Nacional, llevará 99.
   #"CodProv" Código I.N.E. de la provincia o 99 si se trata de datos a nivel Total Comunidad o Total Nacional.
   #"EleDistrict" Código del Distrito Electoral que corresponda o 9 en datos a nivel Total Provincial, Comunidad o Nacional.
-  #"CodCand" Código de la candidatura o del Senador.
-  #"VotCand" Votos obtenidos por la candidatura.
-  #"ObtCand" Número de candidatos obtenidos por la candidatura.
+  #"CandCode" Código de la candidatura o del Senador.
+  #"CandVotos" Votos obtenidos por la candidatura.
+  #"CandObt" Número de candidatos obtenidos por la candidatura.
 
   widthInfo <- c (2,4,2,1,2,2,1,6,8,5)
   colNames <- c("ElType","ElYear","ElMonth","Round",
                 "CodAut","CodProv","EleDistrict",
-                "CodCand","VotCand","ObtCand")
+                "CandCode","CandVotos","CandObt")
 
   data <- readElecFile(file = filename,widths = widthInfo,col.names =colNames)
 
   return(data)
 }
 
-#Fichero de DATOS COMUNES DE MESAS y del C.E.R.A.
+#9.- Fichero de DATOS COMUNES DE MESAS y del C.E.R.A.
 read09file <- function(filename)
 {
   #"ElType"   Tipo de elección.
@@ -355,7 +355,7 @@ read09file <- function(filename)
   return(data)
 }
 
-#Fichero de DATOS DE CANDIDATURAS DE MESAS y del C.E.R.A.
+#10.- Fichero de DATOS DE CANDIDATURAS DE MESAS y del C.E.R.A.
 read10file <- function(filename)
 {
   #"ElType"   Tipo de elección.
@@ -368,20 +368,20 @@ read10file <- function(filename)
   #"MunDistrict" Número de distrito municipal en su caso o 01 si el municipio no tiene distritos (distrito único). En el caso de datos procedentes del C.E.R.A., llevará el número del ‘Distrito Electoral’ a que correspondan o 09 si el ámbito de dicho distrito coincide con el de la provincia.
   #"CodSeccion" Código de la sección (tres dígitos seguidos de un espacio, letra mayúscula u otro dígito).
   #"CodMesa" Código de la mesa (una letra mayúscula identificando la mesa o una ‘U’ en caso de mesa única).
-  #"CodCand" Código de la candidatura o del Senador en elecciones al Senado.
-  #"VotCand" Votos obtenidos por la candidatura o el Senador.
+  #"CandCode" Código de la candidatura o del Senador en elecciones al Senado.
+  #"CandVotos" Votos obtenidos por la candidatura o el Senador.
 
   widthInfo <- c (2,4,2,1,2,2,3,2,4,1,6,7)
   colNames <- c("ElType","ElYear","ElMonth","Round",
                 "CodAut","CodProv","CodMun","MunDistrict",
-                "CodSeccion","CodMesa","CodCand","VotCand")
+                "CodSeccion","CodMesa","CandCode","CandVotos")
 
   data <- readElecFile(file = filename,widths = widthInfo,col.names =colNames)
 
   return(data)
 }
 
-#Fichero de DATOS COMUNES DE MUNICIPIOS menores de 250 habitantes. (Solo en Elecciones Municipales)
+#1104.- Fichero de DATOS COMUNES DE MUNICIPIOS menores de 250 habitantes. (Solo en Elecciones Municipales)
 read1104file <- function(filename)
 {
   #"TipoMun" Tipo de municipio: 08 = entre 100 y 250 habitantes 09 = menores de 100 habitantes.
@@ -422,7 +422,7 @@ read1104file <- function(filename)
   return(data)
 }
 
-# Fichero de DATOS DE CANDIDATURAS DE MUNICIPIOS menores de 250 hab. (Solo en Elecciones Municipales)
+#1204.- Fichero de DATOS DE CANDIDATURAS DE MUNICIPIOS menores de 250 hab. (Solo en Elecciones Municipales)
 read1204file <- function(filename)
 {
   #"TipoMun" Tipo de municipio: 08 = entre 100 y 250 habitantes 09 = menores de 100 habitantes.
@@ -431,8 +431,8 @@ read1204file <- function(filename)
   #"Round" Número de vuelta (en procesos a una sola vuelta = 1).
   #"CodProv" Código I.N.E. de la provincia.
   #"CodMun" Código I.N.E. del municipio.
-  #"CandCode"   Código de la candidatura.  #"VotCand" Votos obtenidos por la candidatura.
-  #"VotsCand" Votos obtenidos por la candidatura.
+  #"CandCode"   Código de la candidatura.  #"CandVotos" Votos obtenidos por la candidatura.
+  #"CandVotos" Votos obtenidos por la candidatura.
   #"CandElect" Número de candidatos obtenidos por la candidatura.
   #"CandFirstName" Nombre del candidato.
   #"Cand1LastName" Primer apellido del candidato.
@@ -442,20 +442,196 @@ read1204file <- function(filename)
   #"CandBirthMonth" Fecha de nacimiento del candidato (MES).
   #"CandBirthYear" Fecha de nacimiento del candidato (AÑO).
   #"CandDNI" D.N.I. del candidato.
-  #"VotsCandidato" Votos obtenidos por el candidato.
-  #"CandElected" Candidato elegido (Si/No).
+  #"CandPVotos" Votos obtenidos por el candidato.
+  #"CandPElected" Candidato elegido (Si/No).
 
 
 
 
   widthInfo <- c (2,4,2,1,2,3,6,3,2,25,25,25,1,2,2,4,10,3,1)
   colNames <- c("TipoMun","ElYear","ElMonth","Round","CodProv","CodMun",
-                "CandCode","VotsCand","CandElect",
+                "CandCode","CandVotos","CandElect",
                 "CandFirstName","Cand1LastName","Cand2LastName",
                 "CandSex","CandBirthDay","CandBirthMonth","CandBirthYear",
-                "CandDNI","VotsCandidato","CandElected")
+                "CandDNI","CandPVotos","CandPElected")
 
   data <- readElecFile(file = filename,widths = widthInfo,col.names =colNames)
 
   return(data)
+}
+
+getElecFilename <- function(path=".",fileType,file01data,elecType=NULL)
+{
+  year <- file01data$ElYear
+  month <- file01data$ElMonth
+  if (is.null(elecType))
+  {
+    type <- file01data$ElType
+  } else
+  {
+    type <- elecType
+  }
+
+  return(sprintf("%s/%02i%02i%02i%02i.DAT",path,fileType,
+                 type,year %% 100, month))
+
+}
+
+unpackElectResults <- function(filename,preserveTempData=F)
+{ result <- list()
+
+  myDir <- tempfile(tmpdir = tempdir(),
+                    pattern = "elecData",
+                    fileext = "")
+  dir.create(myDir)
+  unzip(zipfile = filename, exdir = myDir)
+
+  dirData <- dir(myDir,full.names = T)
+  if (length(dirData) == 1 & file.info(dirData)$isdir)
+  {
+    pathWrk <- dirData
+  } else
+  {
+    pathWrk <- myDir
+  }
+
+  #1.- Fichero de CONTROL de los ficheros que componen el proceso electoral.
+  f1 <- list.files(path=pathWrk,full.names = T,pattern = "^01.*\\.DAT$")
+  v1 <- read01file(filename = f1)
+
+  #2.- Fichero de IDENTIFICACION del proceso electoral.
+  v2 <- read02file(filename = getElecFilename(path= pathWrk,
+                                              fileType = 2,
+                                              file01data = v1))
+  result[['controlData']] <- v1
+  result[['electData']] <- v2
+
+  if (v1$Incl03 == 1)
+  {
+    #3.- Fichero de CANDIDATURAS.
+    v3 <- read03file(filename = getElecFilename(path= pathWrk,
+                                                fileType = 3,
+                                                file01data = v1))
+    result[['candListaData']] <- v3
+  }
+  if (v1$Incl04 == 1)
+  {
+    #4.- Fichero de RELACION DE CANDIDATOS.
+    v4 <- read04file(filename = getElecFilename(path= pathWrk,
+                                                fileType = 4,
+                                                file01data = v1))
+    result[['candPersData']] <- v4
+  }
+
+    if (v1$Incl05 == 1)
+  {
+    #5.- Fichero de DATOS COMUNES DE MUNICIPIOS.
+    v5 <- read05file(filename = getElecFilename(path= pathWrk,
+                                                fileType = 5,
+                                                file01data = v1))
+    result[['municData']] <- v5
+  }
+  if (v1$Incl06 == 1)
+  {
+    #6.- Fichero de DATOS DE CANDIDATURAS DE MUNICIPIOS
+    v6 <- read06file(filename = getElecFilename(path= pathWrk,
+                                                fileType = 6,
+                                                file01data = v1))
+    result[['municCandResult']] <- v6
+  }
+  if (v1$Incl07 == 1)
+  {
+    #7.- Fichero de DATOS COMUNES DE AMBITO SUPERIOR AL MUNICIPIO.
+    v7 <- read07file(filename = getElecFilename(path= pathWrk,
+                                                fileType = 7,
+                                                file01data = v1))
+    result[['municAggrData']] <- v7
+  }
+  if (v1$Incl08 == 1)
+  {
+    #8.- Fichero de DATOS DE CANDIDATURAS DE AMBITO SUPERIOR AL MUNICIPIO.
+    v8 <- read08file(filename = getElecFilename(path= pathWrk,
+                                                fileType = 8,
+                                                file01data = v1))
+    result[['municAggrResult']] <- v8
+  }
+  if (v1$Incl09 == 1)
+  {
+    #9.- Fichero de DATOS COMUNES DE MESAS y del C.E.R.A.
+    v9 <- read09file(filename = getElecFilename(path= pathWrk,
+                                                fileType = 9,
+                                                file01data = v1))
+    result[['mesaData']] <- v9
+  }
+  if (v1$Incl10 == 1)
+  {
+    #10.- Fichero de DATOS DE CANDIDATURAS DE MESAS y del C.E.R.A.
+    v10 <- read10file(filename = getElecFilename(path= pathWrk,
+                                                fileType = 10,
+                                                file01data = v1))
+    result[['mesaResult']] <- v10
+  }
+  if (v1$Incl1104 == 1)
+  {
+    #1104.- Fichero de DATOS COMUNES DE MUNICIPIOS menores de 250 habitantes. (Solo en Elecciones Municipales)
+    v1104 <- read1104file(filename = getElecFilename(path= pathWrk,
+                                                fileType = 11,
+                                                file01data = v1,
+                                                elecType = 4))
+    result[['municSmallData']] <- v1104
+  }
+  if (v1$Incl1204 == 1)
+  {
+    #1204.- Fichero de DATOS DE CANDIDATURAS DE MUNICIPIOS menores de 250 hab. (Solo en Elecciones Municipales)
+    v1204 <- read1204file(filename = getElecFilename(path= pathWrk,
+                                                     fileType = 12,
+                                                     file01data = v1,
+                                                     elecType = 4))
+    result[['municSmallResult']] <- v1204
+  }
+
+  if (v1$Incl0510 == 1)
+  {
+    #5.- Fichero de DATOS COMUNES DE MUNICIPIOS (part judic)
+    v0510 <- read05file(filename = getElecFilename(path= pathWrk,
+                                                     fileType = 5,
+                                                     file01data = v1,
+                                                     elecType = 10))
+    result[['municPJData']] <- v0510
+  }
+
+  if (v1$Incl0610 == 1)
+  {
+    #6.- Fichero de DATOS DE CANDIDATURAS DE MUNICIPIOS (part judic)
+    v0610 <- read06file(filename = getElecFilename(path= pathWrk,
+                                                   fileType = 6,
+                                                   file01data = v1,
+                                                   elecType = 10))
+    result[['municPJResult']] <- v0610
+  }
+
+  if (v1$Incl0710 == 1)
+  {
+    #7.- Fichero de DATOS COMUNES DE AMBITO SUPERIOR AL MUNICIPIO. (dip prov)
+    v0710 <- read07file(filename = getElecFilename(path= pathWrk,
+                                                   fileType = 7,
+                                                   file01data = v1,
+                                                   elecType = 10))
+    result[['municAggrDPData']] <- v0710
+  }
+
+  if (v1$Incl0810 == 1)
+  {
+    #8.- Fichero de DATOS DE CANDIDATURAS DE AMBITO SUPERIOR AL MUNICIPIO. (dip prov)
+    v0810 <- read08file(filename = getElecFilename(path= pathWrk,
+                                                   fileType = 8,
+                                                   file01data = v1,
+                                                   elecType = 10))
+    result[['municAggrDPResult']] <- v0810
+  }
+
+
+
+    return(result)
+
 }
