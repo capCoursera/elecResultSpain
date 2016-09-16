@@ -31,6 +31,7 @@ readElecFile <- function(file,...)
   data <- read.fwf(file = file,
                    strip.white = T,
                    fileEncoding="Latin1",
+                   comment.char="",
                    ...)
 
   return(data)
@@ -116,8 +117,8 @@ read03file <- function(filename)
 #"CandCodeAut"   Código de la candidatura cabecera de acumulación a nivel autonómico.
 #"CandCodeNat"   Código de la candidatura cabecera de acumulación a nivel nacional.
 
-  widthInfo <- c (2,4,2,6,
-                  50,150,
+  widthInfo <- c (2,4,2,
+                  6,50,150,
                   6,6,6)
   colNames <- c("ElType","ElYear","ElMonth",
                 "CandCode","candAcronym","candName",
