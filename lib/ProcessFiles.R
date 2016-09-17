@@ -631,8 +631,5 @@ unpackElectResults <- function(filename,preserveTempData=F)
     result[['municAggrDPResult']] <- v0810
   }
 
-
-
-    return(result)
-
+  return(result)
 }

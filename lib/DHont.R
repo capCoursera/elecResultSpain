@@ -219,7 +219,7 @@ mesaRandom <- function(resultados, n = 1)
   return(resMesas$votosMesa[sample(dim(resMesas$votosMesa)[1], n), ])
 }
 
-massiveDHondt <- function(votes, parties, seats, threshold = 0)
+massiveDHondtRBIND <- function(votes, parties, seats, threshold = 0)
 {
   if (class(votes) == "numeric")
   {
@@ -294,6 +294,92 @@ massiveDHondt <- function(votes, parties, seats, threshold = 0)
 
   return(aux)
 }
+
+
+massiveDHondt <- function(votes, parties, seats, threshold = 0)
+{
+  if (class(votes) == "numeric")
+  {
+    if (length(votes) != length(parties))
+    {
+      stop(
+        "ORROR: votes (",
+        length(votes),
+        ") and parties (",
+        length(parties),
+        ") doesn't have the same length"
+      )
+    }
+
+    votesDF <-
+      data.frame(matrix(
+        votes,
+        nrow = 1,
+        dimnames = list(NULL, parties)
+      ))
+  } else if (class(votes) == "data.frame")
+  {
+    if (ncol(votes) != length(parties))
+    {
+      stop(
+        "ORROR: votes (",
+        ncol(votes),
+        "(and parties (",
+        length(parties),
+        ") doesn't have the same length"
+      )
+    }
+
+    votesDF <- votes
+  }
+
+  if (length(seats) == 1)
+  {
+    seatsEff <- rep(seats, nrow(votesDF))
+  } else
+  {
+    if (length(seats) != nrow(votesDF))
+    {
+      stop(
+        "ORROR: seats list length (",
+        length(seats),
+        ") different than number of cases (",
+        nrow(votesDF),
+        ") "
+      )
+    }
+    seatsEff <- seats
+  }
+  votesEff <- votesDF
+
+  if (threshold > 0)
+  {
+    sumVotes <- rowSums(votesDF)
+    votesEff[votesDF < (sumVotes * threshold)] <- 0
+  }
+
+  #Is there a better way to create an empty dataframe?
+  aux <- data.frame(matrix(nrow=0,ncol=length(cands),dimnames = list(NULL,parties)))
+
+  auxVAP <- vapply(seq(nrow(votesEff)), FUN=function(x) {dHondt2(parties = parties,
+                                                             votes=votesEff[x,],
+                                                             seats=seatsEff[x],
+                                                             threshold = threshold)},
+                  FUN.VALUE = aux,USE.NAMES = F)
+  result <- data.frame(matrix(unlist(auxVAP,use.names = F),ncol = length(parties),byrow = T,dimnames = list(NULL,parties)))
+  names(result) <- parties
+
+  # for(x in seq(nrow(votesEff)))
+  # {
+  #   aux <- rbind(aux,dHondt2(parties = parties,
+  #                            votes=votesEff[x,],
+  #                            seats=seatsEff[x],
+  #                            threshold = threshold))
+  # }
+
+  return(result)
+}
+
 
 dHondt2 <- function (parties, votes, seats, threshold = 0)
 {
