@@ -385,14 +385,15 @@ dHondt2 <- function (parties, votes, seats, threshold = 0)
 {
   if (threshold != 0)
   {
-    sumVotes <- sum(votes)
+    sumVotes <- sum(votes,na.rm=T)
     votes[votes < (sumVotes * threshold)] <- 0
   }
 
   .temp <- data.frame(parties = rep(parties, each = seats),
-                      scores = as.vector(sapply(votes, function(x)
-                        x / 1:seats)))
-  out <- with(.temp, (parties[order(-scores)][1:seats]))
+                      scores = as.vector(unlist(lapply(votes, function(x) x / 1:seats),use.names = F))
+                      )
+
+    out <- with(.temp, (parties[order(-scores)][1:seats]))
 
   tabout <- table(out)
   tabout[is.na(votes)] <- NA
