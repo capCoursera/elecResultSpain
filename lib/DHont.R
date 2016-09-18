@@ -389,6 +389,9 @@ dHondt2 <- function (parties, votes, seats, threshold = 0)
     votes[votes < (sumVotes * threshold)] <- 0
   }
 
+  # .temp <- data.frame(parties = rep(parties, each = seats),
+  #                     scores = as.vector(sapply(votes, function(x)
+  #                       x / 1:seats)))
   .temp <- data.frame(parties = rep(parties, each = seats),
                       scores = as.vector(unlist(lapply(votes, function(x) x / 1:seats),use.names = F))
                       )
